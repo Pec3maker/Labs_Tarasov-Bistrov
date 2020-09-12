@@ -5,7 +5,7 @@
 class Interface 
 {
 public:
-	Interface() = default;
+	Interface();
 	~Interface();
 
 	void Init();
