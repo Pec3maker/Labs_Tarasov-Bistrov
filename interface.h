@@ -11,12 +11,12 @@ public:
 	void Init() const;
 private:
 	void CreatePoli() const;
-	void DeletePoli(std::string const name) const;
+	void DeletePoli(const std::string name) const;
 	void Help() const;
 	void Minus() const;
 	void Plus() const;
-	int GetIndex(std::string const name) const;
-	void EditPoli(std::string const name) const;
+	int GetIndex(const std::string name) const;
+	void EditPoli() const;
 
 	std::string* _names = nullptr;
 	Polinom* _cases = nullptr;

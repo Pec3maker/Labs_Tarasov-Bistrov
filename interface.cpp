@@ -9,13 +9,13 @@ Interface::~Interface()
 	delete[] _cases;
 }
 
-Interface::Interface()
+Interface::Interface() 
 {
 	_names = new std::string[COUNT_OF_CASES];
 	_cases = new Polinom[COUNT_OF_CASES];
 }
 
-int Interface::GetIndex(std::string name) const
+int Interface::GetIndex(const std::string name) const
 {
 	for (int i = 0; i < COUNT_OF_CASES; i++)
 	{
@@ -34,11 +34,13 @@ void Interface::Minus() const
 	std::cin >> name;
 	std::cout << "Enter name of second polinom\n>> ";
 	std::cin >> name2;
-	if (GetIndex(name) != -1 && GetIndex(name2) != -1)
+	int indexName1 = GetIndex(name);
+	int indexName2 = GetIndex(name2);
+	if (indexName1 != -1 && indexName2 != -1)
 	{
-		std::cout << _cases[GetIndex(name)] << "\n-\n";
-		std::cout << _cases[GetIndex(name2)] << "\n";
-		std::cout << _cases[GetIndex(name)] - _cases[GetIndex(name2)] << "\n";
+		std::cout << _cases[indexName1] << "\n-\n";
+		std::cout << _cases[indexName2] << "\n";
+		std::cout << _cases[indexName1] - _cases[indexName2] << "\n";
 	}
 	else
 	{
@@ -53,11 +55,13 @@ void Interface::Plus() const
 	std::cin >> name;
 	std::cout << "Enter name of second polinom\n>> ";
 	std::cin >> name2;
-	if (GetIndex(name) != -1 && GetIndex(name2) != -1)
+	int indexName1 = GetIndex(name);
+	int indexName2 = GetIndex(name2);
+	if (indexName1 != -1 && indexName2 != -1)
 	{
-		std::cout << _cases[GetIndex(name)] << "\n+\n";
-		std::cout << _cases[GetIndex(name2)] << "\n";
-		std::cout << _cases[GetIndex(name)] + _cases[GetIndex(name2)] << "\n";
+		std::cout << _cases[indexName1] << "\n+\n";
+		std::cout << _cases[indexName2] << "\n";
+		std::cout << _cases[indexName1] + _cases[indexName2] << "\n";
 	}
 	else
 	{
@@ -65,12 +69,15 @@ void Interface::Plus() const
 	}
 }
 
-void Interface::EditPoli(std::string name) const
+void Interface::EditPoli() const
 {
-	int degree; double* multipliers;
+	int degree; 
+	double* multipliers;
+	std::string name;
 	std::cout << "Enter name of polinom to edit\n>> ";
 	std::cin >> name;
-	if (GetIndex(name) != -1)
+	int indexName = GetIndex(name);
+	if (indexName != -1)
 	{
 
 		std::cout << "Enter new dergee\n>> ";
@@ -83,7 +90,7 @@ void Interface::EditPoli(std::string name) const
 			std::cin >> multipliers[i];
 		}
 
-		_cases[GetIndex(name)].SetPoli(degree, multipliers);
+		_cases[indexName].SetPoli(degree, multipliers);
 		delete[] multipliers;
 	}
 	else
@@ -138,7 +145,7 @@ void Interface::CreatePoli() const
 	delete[] multipliers;
 }
 
-void Interface::DeletePoli(std::string name) const
+void Interface::DeletePoli(const std::string name) const
 {
 	int index = GetIndex(name);
 
@@ -178,7 +185,7 @@ void Interface::Init() const
 		}
 		else if (code == 4)
 		{
-			EditPoli(name);
+			EditPoli();
 			std::cout << "Complete\n";
 		}
 		else if (code == 5)

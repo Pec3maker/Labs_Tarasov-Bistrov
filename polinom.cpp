@@ -2,7 +2,7 @@
 #include <iostream>
 #include "polinom.h"
 
-//РћРїСЂРµРґРµР»РµРЅРёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРѕРІ Рё РјРµС‚РѕРґРѕРІ
+//Определение конструкторов и методов
 Polinom::Polinom(int degree, double* multipliers)
 {
 	_multipliers = new double[degree + 1];
@@ -29,13 +29,13 @@ void Polinom::SetPoli(int degree, double* multipliers)
 	cpy(*this, degree, multipliers);
 }
 
-Polinom Polinom::AddPoli(Polinom& source)
+Polinom Polinom::AddPoli(const Polinom& source)
 {
 	*this = *this + source;
 	return *this;
 }
 
-Polinom Polinom::SubstractPoli(Polinom& source)
+Polinom Polinom::SubstractPoli(const Polinom& source)
 {
 	*this = *this - source;
 	return *this;
@@ -104,7 +104,7 @@ Polinom Polinom::operator + (const Polinom& source) const
 	return result;
 }
 
-Polinom Polinom::operator - (Polinom& source) const
+Polinom Polinom::operator - (const Polinom& source) const
 {
 	return *this + (-source);
 }
