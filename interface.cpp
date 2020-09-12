@@ -159,6 +159,89 @@ void Interface::DeletePoli(const std::string name) const
 	}
 }
 
+void Interface::PrintPoli() const
+{
+	std::string name;
+	std::cout << "Enter name of polinom to print\n>> ";
+	std::cin >> name;
+	if (GetIndex(name) != -1)
+	{
+		std::cout << _cases[GetIndex(name)] << "\n";
+	}
+	else
+	{
+		std::cout << "Wrong name\n";
+	}
+}
+
+void Interface::GetMultiplier() const
+{
+	std::string name;
+	int arg;
+	std::cout << "Enter name of polinom to get multiplier\n>> ";
+	std::cin >> name;
+	std::cout << "Enter index of multipliers to get multiplier\n>> ";
+	std::cin >> arg;
+	if (_cases[GetIndex(name)].GetDegree() < arg)
+	{
+		std::cout << "Wrong degree\n";
+	}
+	else
+	{
+		std::cout << "Multiplier[i] = " << _cases[GetIndex(name)][arg] << "\n";
+	}
+}
+
+void Interface::SignInversion() const
+{
+	std::string name;
+	std::cout << "Enter name of polinom to invert\n>> ";
+	std::cin >> name;
+	if (GetIndex(name) != -1)
+	{
+		std::cout << "-(" << _cases[GetIndex(name)] << ")" << "\n = \n" << -_cases[GetIndex(name)] << "\n";
+	}
+	else
+	{
+		std::cout << "Wrong name\n";
+	}
+}
+
+void Interface::SolvePolinom() const
+{
+	std::string name;
+	int arg;
+	std::cout << "Enter name of polinom to solve\n>> ";
+	std::cin >> name;
+	if (GetIndex(name) != -1)
+	{
+		std::cout << "Enter arg of polinom\n>> ";
+		std::cin >> arg;
+		std::cout << "f(x) = " << _cases[GetIndex(name)] << "\n" << "f(" << arg << ") = " << _cases[GetIndex(name)].SolvePoli(arg) << "\n";
+	}
+	else
+	{
+		std::cout << "Wrong name\n";
+	}
+}
+
+void Interface::GetDegree() const
+{
+	std::string name;
+	std::cout << "Enter name of polinom to get degree\n>> ";
+	std::cin >> name;
+	std::cout << "Degree = " << _cases[GetIndex(name)].GetDegree() << "\n";
+}
+
+void Interface::DelPolinom() const
+{
+	std::string name;
+	std::cout << "Enter name of polinom to delete\n>> ";
+	std::cin >> name;
+	DeletePoli(name);
+	std::cout << "Complete\n";
+}
+
 void Interface::Init() const
 {
 	int code, arg; std::string name, name2;
@@ -174,10 +257,7 @@ void Interface::Init() const
 		}
 		else if (code == 2)
 		{
-			std::cout << "Enter name of polinom to delete\n>> ";
-			std::cin >> name;
-			DeletePoli(name);
-			std::cout << "Complete\n";
+			DelPolinom();
 		}
 		else if (code == 3)
 		{
@@ -198,65 +278,23 @@ void Interface::Init() const
 		}
 		else if (code == 7)
 		{
-			std::cout << "Enter name of polinom to invert\n>> ";
-			std::cin >> name;
-			if (GetIndex(name) != -1)
-			{
-				std::cout << "-(" << _cases[GetIndex(name)] << ")" << "\n = \n" << -_cases[GetIndex(name)] << "\n";
-			}
-			else
-			{
-				std::cout << "Wrong name\n";
-			}
+			SignInversion();
 		}
 		else if (code == 8)
 		{
-			std::cout << "Enter name of polinom to solve\n>> ";
-			std::cin >> name;
-			if (GetIndex(name) != -1)
-			{
-				std::cout << "Enter arg of polinom\n>> ";
-				std::cin >> arg;
-				std::cout << "f(x) = " << _cases[GetIndex(name)] << "\n" << "f(" << arg << ") = " << _cases[GetIndex(name)].SolvePoli(arg) << "\n";
-			}
-			else
-			{
-				std::cout << "Wrong name\n";
-			}
+			SolvePolinom();
 		}
 		else if (code == 9)
 		{
-			std::cout << "Enter name of polinom to get degree\n>> ";
-			std::cin >> name;
-			std::cout << "Degree = " << _cases[GetIndex(name)].GetDegree() << "\n";
+			GetDegree();
 		}
 		else if (code == 10)
 		{
-			std::cout << "Enter name of polinom to get multiplier\n>> ";
-			std::cin >> name;
-			std::cout << "Enter index of multipliers to get multiplier\n>> ";
-			std::cin >> arg;
-			if (_cases[GetIndex(name)].GetDegree() < arg)
-			{
-				std::cout << "Wrong degree\n";
-			}
-			else
-			{
-				std::cout << "Multiplier[i] = " << _cases[GetIndex(name)][arg] << "\n";
-			}
+			GetMultiplier();
 		}
 		else if (code == 11)
 		{
-			std::cout << "Enter name of polinom to print\n>> ";
-			std::cin >> name;
-			if (GetIndex(name) != -1)
-			{
-				std::cout << _cases[GetIndex(name)] << "\n";
-			}
-			else
-			{
-				std::cout << "Wrong name\n";
-			}
+			PrintPoli();
 		}
 		else if(code == 12)
 		{

@@ -17,6 +17,12 @@ private:
 	void Plus() const;
 	int GetIndex(const std::string name) const;
 	void EditPoli() const;
+	void PrintPoli() const;
+	void GetMultiplier() const;
+	void SignInversion() const;
+	void SolvePolinom() const;
+	void GetDegree() const;
+	void DelPolinom() const;
 
 	std::string* _names = nullptr;
 	Polinom* _cases = nullptr;
