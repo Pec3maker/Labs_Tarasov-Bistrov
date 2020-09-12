@@ -15,7 +15,7 @@ Interface::Interface()
 	_cases = new Polinom[COUNT_OF_CASES];
 }
 
-int Interface::GetIndex(std::string name)
+int Interface::GetIndex(std::string name) const
 {
 	for (int i = 0; i < COUNT_OF_CASES; i++)
 	{
@@ -27,7 +27,7 @@ int Interface::GetIndex(std::string name)
 	return -1;
 }
 
-void Interface::Minus()
+void Interface::Minus() const
 {
 	std::string name, name2;
 	std::cout << "Enter name of first polinom\n>> ";
@@ -46,7 +46,7 @@ void Interface::Minus()
 	}
 }
 
-void Interface::Plus()
+void Interface::Plus() const
 {
 	std::string name, name2;
 	std::cout << "Enter name of first polinom\n>> ";
@@ -65,7 +65,7 @@ void Interface::Plus()
 	}
 }
 
-void Interface::EditPoli(std::string name)
+void Interface::EditPoli(std::string name) const
 {
 	int degree; double* multipliers;
 	std::cout << "Enter name of polinom to edit\n>> ";
@@ -92,13 +92,13 @@ void Interface::EditPoli(std::string name)
 	}
 }
 
-void Interface::Help()
+void Interface::Help() const
 {
 	std::cout << "\"1\" - Create new polinom\n\"2\"- Delete polinom\n\"3\"- Help\n\"4\" - Set Polinom\n\"5\" - Plus\n\
 \"6\" - Minus\n\"7\" - Sign inversion\n\"8\" - Solve polinom\n\"9\" - Get Degree\n\"10\"- Get multiplier\n\"11\" - Print polinom\n\"12\" - Exit\n";
 }
 
-void Interface::CreatePoli()
+void Interface::CreatePoli() const
 {
 	int degree; double* multipliers; std::string name; bool isEnoughtSpace = false; int index;
 	std::cout << "Enter degree:\n>> ";
@@ -138,7 +138,7 @@ void Interface::CreatePoli()
 	delete[] multipliers;
 }
 
-void Interface::DeletePoli(std::string name)
+void Interface::DeletePoli(std::string name) const
 {
 	int index = GetIndex(name);
 
@@ -152,7 +152,7 @@ void Interface::DeletePoli(std::string name)
 	}
 }
 
-void Interface::Init()
+void Interface::Init() const
 {
 	int code, arg; std::string name, name2;
 	while (true)
