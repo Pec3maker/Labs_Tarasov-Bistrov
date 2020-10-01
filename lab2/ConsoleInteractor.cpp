@@ -126,9 +126,9 @@ void ConsoleInteractor::CreatePair() const
 			{
 				newElement = new Money(firstNum, secondNum);
 			}
-			catch (const std::exception& err)
+			catch (const std::logic_error& err)
 			{
-				cout << "Some part of pair was less than 0\n";
+				cout << err.what();
 				return;
 			}
 		}
