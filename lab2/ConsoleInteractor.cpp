@@ -71,7 +71,7 @@ void ConsoleInteractor::Plus() const
 	{
 		cout << _cases[indexName1]->GetPair() << "\n+\n";
 		cout << _cases[indexName2]->GetPair() << "\n";
-		cout << (_cases[indexName1]->Minus(*_cases[indexName2]))->GetPair() << "\n";
+		cout << (_cases[indexName1]->Plus(*_cases[indexName2]))->GetPair() << "\n";
 	}
 	else
 	{
@@ -126,7 +126,7 @@ void ConsoleInteractor::CreatePair() const
 			{
 				newElement = new Money(firstNum, secondNum);
 			}
-			catch (const char*)
+			catch (const std::exception& err)
 			{
 				cout << "Some part of pair was less than 0\n";
 				return;
