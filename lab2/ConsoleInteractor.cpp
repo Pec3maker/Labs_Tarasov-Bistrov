@@ -54,9 +54,9 @@ void ConsoleInteractor::Minus() const
 void ConsoleInteractor::Plus() const
 {
 	string name, name2;
-	cout << "Enter name of first polinom\n>> ";
+	cout << "Enter name of first pair\n>> ";
 	cin >> name;
-	cout << "Enter name of second polinom\n>> ";
+	cout << "Enter name of second pair\n>> ";
 	cin >> name2;
 	int indexName1 = GetIndex(name);
 	int indexName2 = GetIndex(name2);
@@ -151,7 +151,7 @@ void ConsoleInteractor::DeletePair(const string& name) const
 void ConsoleInteractor::PrintPair() const
 {
 	string name;
-	cout << "Enter name of polinom to print\n>> ";
+	cout << "Enter name of pair to print\n>> ";
 	cin >> name;
 	int index = GetIndex(name);
 	if (index != -1)
@@ -167,7 +167,7 @@ void ConsoleInteractor::PrintPair() const
 void ConsoleInteractor::DelPair() const
 {
 	string name;
-	cout << "Enter name of polinom to delete\n>> ";
+	cout << "Enter name of pair to delete\n>> ";
 	cin >> name;
 	DeletePair(name);
 	cout << "Complete\n";
