@@ -1,10 +1,10 @@
 #pragma once
 #include "Pair.h"
 
-const int MAX_SECOND = 100;
-
 class Money : public Pair
 {
+private:
+	const int MAX_SECOND = 100;
 public:
 	Money() : Pair() {}
 	Money(int _firstInt, int _secondInt);
