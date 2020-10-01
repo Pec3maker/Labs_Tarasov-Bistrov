@@ -6,11 +6,14 @@ using std::cout;
 
 ConsoleInteractor::~ConsoleInteractor()
 {
-	delete[] _names;
 	for (int i = 0; i < _count; i++)
 	{
-		delete _cases[i];
+		if (_names[i] != "")
+		{
+			delete _cases[i];
+		}
 	}
+	delete[] _names;
 	delete[] _cases;
 }
 
@@ -126,6 +129,7 @@ void ConsoleInteractor::CreatePair() const
 			catch (const char*)
 			{
 				cout << "Some part of pair was less than 0\n";
+				return;
 			}
 		}
 
@@ -150,6 +154,7 @@ void ConsoleInteractor::DeletePair(const string& name) const
 	{
 		_names[index] = "";
 		delete _cases[index];
+		_cases[index] = nullptr;
 	}
 }
 
