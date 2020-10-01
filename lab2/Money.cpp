@@ -1,4 +1,5 @@
 #include "Money.h"
+#include <stdexcept>
 
 Money::Money(int _firstInt, int _secondInt) : Pair(_firstInt, _secondInt)
 {
@@ -10,7 +11,7 @@ Money::Money(int _firstInt, int _secondInt) : Pair(_firstInt, _secondInt)
 
 	if (_firstInt < 0 || _secondInt < 0)
 	{
-		throw std::exception("Division by zero!");
+		throw std::logic_error("Less than zero\n");
 	}
 }
 
