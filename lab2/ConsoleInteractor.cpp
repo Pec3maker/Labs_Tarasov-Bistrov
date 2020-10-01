@@ -12,6 +12,7 @@ ConsoleInteractor::~ConsoleInteractor()
 
 ConsoleInteractor::ConsoleInteractor()
 {
+	cout << "Enter space for Pairs\n>> ";
 	cin >> _count;
 	_names = new string[_count];
 	_cases = new Pair*[_count];
