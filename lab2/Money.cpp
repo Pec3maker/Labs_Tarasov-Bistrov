@@ -1,7 +1,5 @@
 #include "Money.h"
 
-const int MAX_SECOND = 100;
-
 Money::Money(int _firstInt, int _secondInt) : Pair(_firstInt, _secondInt)
 {
 	if (_secondInt > MAX_SECOND)
@@ -12,7 +10,7 @@ Money::Money(int _firstInt, int _secondInt) : Pair(_firstInt, _secondInt)
 
 	if (_firstInt < 0 || _secondInt < 0)
 	{
-		throw "LESS_THAN_ZERO";
+		throw std::exception("Division by zero!");
 	}
 }
 
