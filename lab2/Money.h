@@ -1,6 +1,8 @@
 #pragma once
 #include "Pair.h"
 
+const int MAX_SECOND = 100;
+
 class Money : public Pair
 {
 public:
