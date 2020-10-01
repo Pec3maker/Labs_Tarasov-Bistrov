@@ -16,7 +16,7 @@ int Pair::GetSecondInt() const
 	return _secondInt;
 }
 
-Pair* Pair::Pair(const Pair& source)
+Pair* Pair::Plus(const Pair& source)
 {
 	_firstInt += source._firstInt;
 	_secondInt += source._secondInt;
