@@ -7,6 +7,10 @@ using std::cout;
 ConsoleInteractor::~ConsoleInteractor()
 {
 	delete[] _names;
+	for (int i = 0; i < _count; i++)
+	{
+		delete _cases[i];
+	}
 	delete[] _cases;
 }
 
@@ -145,6 +149,7 @@ void ConsoleInteractor::DeletePair(const string& name) const
 	else
 	{
 		_names[index] = "";
+		delete _cases[index];
 	}
 }
 
