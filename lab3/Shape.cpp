@@ -108,3 +108,15 @@ std::string Shape::ToString() const
 	}
 	return result;
 }
+
+bool Shape::IsParallelSides(const Point& a1, const Point& a2, const Point& b1, const Point& b2) const
+{
+	double k1 = (a2.y - a1.y) / (a2.x - a1.x);
+	double k2 = (b2.y - b1.y) / (b2.x - b1.x);
+
+	if (k1 == k2 || !(a2.x - a1.x) && !(b2.x - b1.x))
+	{
+		return true;
+	}
+	return false;
+}

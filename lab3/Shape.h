@@ -15,7 +15,7 @@ class Shape
 {
 public:
 	Shape() : _cords(nullptr), _countCords(0), _lenghtSides(nullptr) {}
-	virtual ~Shape(){};
+	virtual ~Shape();
 
 	int GetCountCords() const;
 	double GetSide(const int index) const;
@@ -37,4 +37,6 @@ protected:
 	const double PI = 3.14159265358979323846;
 
 	void CalculateSides();
+
+	bool IsParallelSides(const Point& a1, const Point& a2, const Point& b1, const Point& b2) const;
 };

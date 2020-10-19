@@ -33,9 +33,12 @@ Point Rectangle::GetCenter() const
 
 bool Rectangle::RightShape(Point* cords) const
 {
+	bool IsParallel1 = IsParallelSides(cords[0], cords[1], cords[2], cords[3]);
+	bool IsParallel2 = IsParallelSides(cords[1], cords[2], cords[3], cords[0]);
+
 	double diagonal1 = sqrt(pow(cords[0].x - cords[2].x, 2) + pow(cords[0].y - cords[2].y, 2));
 	double diagonal2 = sqrt(pow(cords[1].x - cords[3].x, 2) + pow(cords[1].y - cords[3].y, 2));
-	if (diagonal1 == diagonal2)
+	if (diagonal1 == diagonal2 && IsParallel1 && IsParallel2)
 	{
 		return true;
 	}

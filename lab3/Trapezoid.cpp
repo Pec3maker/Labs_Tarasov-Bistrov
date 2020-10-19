@@ -69,15 +69,3 @@ double Trapezoid::GetAreaTriangle(const Point& dot1, const Point& dot2, const Po
 	return abs(0.5 * ((dot1.x - dot3.x) * (dot2.y - dot3.y) - (dot1.y - dot3.y) * (dot2.x - dot3.x)));
 }
 
-bool Trapezoid::IsParallelSides(const Point& a1, const Point& a2, const Point& b1, const Point& b2) const
-{
-	double k1 = (a2.y - a1.y) / (a2.x - a1.x);
-	double k2 = (b2.y - b1.y) / (b2.x - b1.x);
-
-	if (k1 == k2)
-	{
-		return true;
-	}
-	return false;
-
-}

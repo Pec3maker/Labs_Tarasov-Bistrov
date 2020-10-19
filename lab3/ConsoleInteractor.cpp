@@ -58,12 +58,12 @@ void ConsoleInteractor::CreateShape() const
 
 	Point* points = new Point[COUNT_POINTS];
 
-	cout << "Enter point(x y) separated by space:\n>> ";
+	cout << "Enter points:\n";
 	for (int i = 0; i < COUNT_POINTS; i++)
 	{
-		cout << i << "\n) x: \n>> ";
+		cout << "\n" << i + 1 << ") x: \n>> ";
 		cin >> points[i].x;
-		cout << i << "\ny: \n>> ";
+		cout << "\n" << i + 1 << ") y: \n>> ";
 		cin >> points[i].y;
 	}
 
@@ -81,22 +81,30 @@ void ConsoleInteractor::CreateShape() const
 	if (isEnoughtSpace)
 	{
 		Shape* newElement = nullptr;
-		if (type == 1)
-		{
-			newElement = rectangleFactory.createShape(points);
-		}
-		else if (type == 2)
-		{
-			newElement = trapezoidFactory.createShape(points);
-		}
 
-		_names[index] = name;
-		_cases[index] = newElement;
+		try
+		{
+			if (type == 1)
+			{
+				newElement = rectangleFactory.createShape(points);
+			}
+			else if (type == 2)
+			{
+				newElement = trapezoidFactory.createShape(points);
+			}
+			_names[index] = name;
+			_cases[index] = newElement;
+		}
+		catch (const std::logic_error& src)
+		{
+			cout << src.what() << "\n";
+		}
 	}
 	else
 	{
 		cout << "You don't have enought space, delete something\n";
 	}
+	delete[] points;
 }
 
 void ConsoleInteractor::DeleteShape(const string& name) const
@@ -140,45 +148,182 @@ void ConsoleInteractor::DelShape() const
 	cout << "Complete\n";
 }
 
-//cout << "\"1\" - Create new Shape\n\"2\" - Delete Shape\n\"3\" - Help\n\"4\" - Compare \n\"5\" - IsIntersect\n\
-//\"6\" - Print Shape\n\"7\" - Move\n\"8\" - Rotate\n\"9\" - Get Area\n\"10\" - Get Center\n\"11\" - Exit\n";
+void ConsoleInteractor::Compare() const
+{
+	Operators operators;
+	string name, name2;
+	cout << "Enter name of first shape\n>> ";
+	cin >> name;
+	cout << "Enter name of second shape\n>> ";
+	cin >> name2;
+	int indexName1 = GetIndex(name);
+	int indexName2 = GetIndex(name2);
+	if (indexName1 != -1 && indexName2 != -1)
+	{
+		switch (operators.Compare(_cases[indexName1], _cases[indexName2]))
+		{
+		case 1:
+			cout << "First shape larger than second\n";
+			break;
+		case -1:
+			cout << "Second shape larger than first\n";
+			break;
+		case 0:
+			cout << "Shapes have the same area\n";
+			break;
+		}
+	}
+	else
+	{
+		cout << "Wrong name\n";
+	}
+}
+
+void ConsoleInteractor::Move() const
+{
+	string name;
+	char side;
+	double count;
+	cout << "Enter name of shape\n>> ";
+	cin >> name;
+	int indexName1 = GetIndex(name);
+	if (indexName1 != -1)
+	{
+		cout << "Which side?(u-up, l-left, r-right, d-down)\n>> ";
+		cin >> side;
+		cout << "How much\n>> ";
+		cin >> count;
+		_cases[indexName1]->Move(side, count);
+	}
+	else
+	{
+		cout << "Wrong name\n";
+	}
+}
+
+void ConsoleInteractor::Rotate() const
+{
+	string name;
+	int angle;
+	cout << "Enter name of shape\n>> ";
+	cin >> name;
+	int indexName1 = GetIndex(name);
+	if (indexName1 != -1)
+	{
+		cout << "Enter angle\n>> ";
+		cin >> angle;
+		_cases[indexName1]->Rotate(angle);
+	}
+	else
+	{
+		cout << "Wrong name\n";
+	}
+}
+
+void ConsoleInteractor::GetArea() const
+{
+	string name;
+	cout << "Enter name of shape\n>> ";
+	cin >> name;
+	int indexName1 = GetIndex(name);
+	if (indexName1 != -1)
+	{
+		cout << "Area of this shape is " << _cases[indexName1]->GetArea() << "\n";
+	}
+	else
+	{
+		cout << "Wrong name\n";
+	}
+}
+
+void ConsoleInteractor::GetCenter() const
+{
+	string name;
+	cout << "Enter name of shape\n>> ";
+	cin >> name;
+	int indexName1 = GetIndex(name);
+	if (indexName1 != -1)
+	{
+		Point center = _cases[indexName1]->GetCenter();
+		cout << "Center of this shape: x = " << center.x << " y = " << center.y << "\n";
+	}
+	else
+	{
+		cout << "Wrong name\n";
+	}
+}
+
+void ConsoleInteractor::IsIntersect() const
+{
+	Operators operators;
+	string name, name2;
+	cout << "Enter name of first shape\n>> ";
+	cin >> name;
+	cout << "Enter name of second shape\n>> ";
+	cin >> name2;
+	int indexName1 = GetIndex(name);
+	int indexName2 = GetIndex(name2);
+	if (indexName1 != -1 && indexName2 != -1)
+	{
+		if (operators.IsIntersect(_cases[indexName1], _cases[indexName2]))
+		{
+			cout << "Shapes intersect\n";
+		}
+		else
+		{
+			cout << "Shapes don't intersect\n";
+		}
+	}
+	else
+	{
+		cout << "Wrong name\n";
+	}
+}
 
 void ConsoleInteractor::Init() const
 {
-	Operators operators;
-	while (true)
+	bool flag = true;
+	while (flag)
 	{
 		int code;
 		cout << "Enter \"3\" - Help\n";
 		cout << ">> ";
 		cin >> code;
 
-		if (code == 1)
+		switch (code)
 		{
+		case 1:
 			CreateShape();
-		}
-		else if (code == 2)
-		{
+			break;
+		case 2:
 			DelShape();
-		}
-		else if (code == 3)
-		{
+			break;
+		case 3:
 			Help();
-		}
-		else if (code == 4)
-		{
-			
-		}
-		else if (code == 5)
-		{
-			Minus();
-		}
-		else if (code == 6)
-		{
+			break;
+		case 4:
+			Compare();
+			break;
+		case 5:
+			IsIntersect();
+			break;
+		case 6:
 			PrintShape();
-		}
-		else if (code == 7)
-		{
+			break;
+		case 7:
+			Move();
+			break;
+		case 8:
+			Rotate();
+			break;
+		case 9:
+			GetArea();
+			break;
+		case 10:
+
+			break;
+		case 11:
+			flag = false;
 			break;
 		}
 	}

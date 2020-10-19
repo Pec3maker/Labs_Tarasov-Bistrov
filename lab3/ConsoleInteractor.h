@@ -18,6 +18,12 @@ private:
 	void DeleteShape(const string& name) const;
 	void PrintShape() const;
 	void DelShape() const;
+	void Compare() const;
+	void IsIntersect() const;
+	void Move() const;
+	void Rotate() const;
+	void GetArea() const;
+	void GetCenter() const;
 
 	Shape** _cases = nullptr;
 	string* _names = nullptr;
