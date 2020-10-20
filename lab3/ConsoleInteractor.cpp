@@ -160,7 +160,7 @@ void ConsoleInteractor::Compare() const
 	int indexName2 = GetIndex(name2);
 	if (indexName1 != -1 && indexName2 != -1)
 	{
-		switch (operators.Compare(_cases[indexName1], _cases[indexName2]))
+		switch (operators.Compare(*_cases[indexName1], *_cases[indexName2]))
 		{
 		case 1:
 			cout << "First shape larger than second\n";
@@ -265,7 +265,7 @@ void ConsoleInteractor::IsIntersect() const
 	int indexName2 = GetIndex(name2);
 	if (indexName1 != -1 && indexName2 != -1)
 	{
-		if (operators.IsIntersect(_cases[indexName1], _cases[indexName2]))
+		if (operators.IsIntersect(*_cases[indexName1], *_cases[indexName2]))
 		{
 			cout << "Shapes intersect\n";
 		}
