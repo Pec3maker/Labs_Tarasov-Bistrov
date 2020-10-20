@@ -7,14 +7,12 @@ struct Point
 {
 	double x;
 	double y;
-
-
 };
 
 class Shape
 {
 public:
-	Shape() : _cords(nullptr), _countCords(0), _lenghtSides(nullptr) {}
+	Shape() : _cords(nullptr), _countCords(0), _lenghtSides(nullptr), PI(3.14159265358979323846) {}
 	virtual ~Shape();
 
 	int GetCountCords() const;
@@ -30,11 +28,12 @@ public:
 	
 
 protected:
+
 	Point* _cords;
 	int _countCords;
 	double* _lenghtSides;
 
-	const double PI = 3.14159265358979323846;
+	const double PI;
 
 	void CalculateSides();
 
