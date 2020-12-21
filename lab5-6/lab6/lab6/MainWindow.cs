@@ -30,6 +30,7 @@ namespace lab6
                 }
                 catch(FormatException err)
                 {
+                    MessageBox.Show("Wrong Format (" + err.Message + ")");
                     return;
                 }
             }
@@ -52,7 +53,11 @@ namespace lab6
             int selectedIndex1 = FirstNumBox.SelectedIndex;
             int selectedIndex2 = SecondNumBox.SelectedIndex;
 
-            if (selectedIndex1 > -1 && selectedIndex1 < _cases.Count && selectedIndex2 > -1 && selectedIndex2 < _cases.Count)
+            if(!radioButtonMinus.Checked && !radioButtonPlus.Checked)
+            {
+                MessageBox.Show("Choose operation");
+            }
+            else if (selectedIndex1 > -1 && selectedIndex1 < _cases.Count && selectedIndex2 > -1 && selectedIndex2 < _cases.Count)
             {
                 if (radioButtonMinus.Checked)
                 {
@@ -73,6 +78,10 @@ namespace lab6
                 ResultTextBox.Text += _cases[index2].GetPair() + "\n";
                 ResultTextBox.Text += _cases[index].Minus(_cases[index2]).GetPair() + "\n";
             }
+            else
+            {
+                MessageBox.Show("You cannot operate with different types");
+            }
         }
 
         private void Plus(int index, int index2)
@@ -82,6 +91,10 @@ namespace lab6
                 ResultTextBox.Text = _cases[index].GetPair() + "\n+\n";
                 ResultTextBox.Text += _cases[index2].GetPair() + "\n";
                 ResultTextBox.Text += _cases[index].Plus(_cases[index2]).GetPair() + "\n";
+            }
+            else
+            {
+                MessageBox.Show("You cannot operate with different types");
             }
         }
 
